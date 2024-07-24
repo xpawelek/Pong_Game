@@ -72,18 +72,17 @@ while game_active:
 
     ball.move()
 
-
     if player_1.head.ycor() >= half_of_height + 20:
-        player_1.players_touches_up()
+        player_1.touches_up()
 
     if player_1.tail.ycor() <= (-1 * half_of_height) - 20:
-        player_1.players_touches_bottom()
+        player_1.touches_bottom()
 
     if player_2.head.ycor() >= half_of_height + 20:
-        player_2.players_touches_up()
+        player_2.touches_up()
 
     if player_2.tail.ycor() <= (-1 * half_of_height) - 20:
-        player_2.players_touches_bottom()
+        player_2.touches_bottom()
 
     screen.update()
 
@@ -92,7 +91,7 @@ while game_active:
             direction = "left"
             ball.invert_direction()
             ball.forward(10)
-            ball.hit_box()
+            ball.hits_paddle()
             break
 
     for paddle in player_2.paddle:
@@ -100,25 +99,26 @@ while game_active:
             direction = "right"
             ball.invert_direction()
             ball.forward(10)
-            ball.hit_box()
+            ball.hits_paddle()
             break
 
-
     if ball.ycor() >= screen_height // 2 - 10:
-        print(direction)
-        ball.ball_hits_up_or_down("up", direction)
+        ball.ball_hits_top_or_bottom("top", direction)
     if ball.ycor() <= -half_of_height:
-        print(direction)
-        ball.ball_hits_up_or_down("down", direction)
-
+        ball.ball_hits_top_or_bottom("bottom", direction)
 
     if ball.xcor() >= screen_width // 2:
-        player_2.player_gets_point(scoreboard_second_player)
-        ball.ball_refresh()
+        player_2.gets_point(scoreboard_second_player)
+        ball.refresh()
+        screen.update()
+        time.sleep(0.5)
 
     if ball.xcor() <= -screen_width // 2:
-        player_1.player_gets_point(scoreboard_first_player)
-        ball.ball_refresh()
+        player_1.gets_point(scoreboard_first_player)
+        ball.refresh()
+        screen.update()
+        time.sleep(0.5)
+
 
 screen.exitonclick()
 

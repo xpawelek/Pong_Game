@@ -35,12 +35,12 @@ class Player(Turtle):
 
 
 
-    def players_touches_up(self):
+    def touches_up(self):
         for i in range(0, len(self.paddle) - 1):
             self.paddle[i].setpos(self.paddle[i + 1].xcor(), self.paddle[i + 1].ycor())
         self.tail.sety(self.tail.ycor() - 20)
 
-    def players_touches_bottom(self):
+    def touches_bottom(self):
         for i in range(len(self.paddle) - 1, 0, -1):
             self.paddle[i].setpos(self.paddle[i - 1].xcor(), self.paddle[i - 1].ycor())
         self.head.sety(self.head.ycor() + 20)
@@ -51,7 +51,7 @@ class Player(Turtle):
         self.tail.sety(self.tail.ycor() - 20)
 
 
-    def player_gets_point(self, scoreboard):
+    def gets_point(self, scoreboard):
         scoreboard.score += 1
         scoreboard.clear()
         scoreboard.refresh()
