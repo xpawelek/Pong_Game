@@ -90,7 +90,6 @@ while game_active:
     for paddle in player_1.paddle:
         if ball.distance(paddle) < 20:
             direction = "left"
-            paddle.color("red")
             ball.invert_direction()
             ball.forward(10)
             ball.hit_box()
