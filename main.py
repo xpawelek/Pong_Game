@@ -41,14 +41,20 @@ while net_drawing_start <= 2*half_of_height:
 
 player_1_x_cord = (screen_width // 2) - 25
 player_2_x_cord = -(screen_width // 2) + 25
-player_1 = Player(player_1_x_cord)
-player_2 = Player(player_2_x_cord)
+player_1 = Player(player_1_x_cord, screen)
+player_2 = Player(player_2_x_cord, screen)
 
 screen.listen()
-screen.onkeypress(key="Up", fun=player_1.going_up)
-screen.onkeypress(key="Down", fun=player_1.going_down)
-screen.onkeypress(key="w", fun=player_2.going_up)
-screen.onkeypress(key="s", fun=player_2.going_down)
+screen.onkeypress(player_1.move_up, "Up")
+screen.onkeyrelease(player_1.stop_move_up, "Up")
+screen.onkeypress(player_1.move_down, "Down")
+screen.onkeyrelease(player_1.stop_move_down, "Down")
+
+screen.onkeypress(player_2.move_up, "w")
+screen.onkeyrelease(player_2.stop_move_up, "w")
+screen.onkeypress(player_2.move_down, "s")
+screen.onkeyrelease(player_2.stop_move_down, "s")
+
 
 #ball
 ball = Ball()
